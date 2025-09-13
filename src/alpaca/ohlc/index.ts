@@ -6,7 +6,7 @@ import { headers } from '../headers';
 import { baseUrl } from '../urls/data';
 
 function date(localET: string) {
-  return DateTime.fromISO(localET, { zone: 'America/New_York' }).toUTC().toISO({ suppressMilliseconds: true });
+  return DateTime.fromISO(localET, { zone: 'America/New_York' }).toUTC().toISO({ suppressMilliseconds: true }) ?? undefined;
 }
 
 export async function run() {
@@ -31,5 +31,5 @@ export async function run() {
     }
   });
 
-  console.log(data.bars);
+  console.log(data?.bars);
 }
