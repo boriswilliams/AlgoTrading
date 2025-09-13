@@ -1,7 +1,8 @@
 import createClient from 'openapi-fetch';
 
-import type { paths, components } from '../../types/alpaca';
-import { baseUrl, headers } from './accounts/paper';
+import type { paths, components } from '../../types/alpaca/trading';
+import { headers } from './headers';
+import { baseUrl } from './urls/trading/paper';
 
 export async function run() {
 

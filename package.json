@@ -10,11 +10,13 @@
     "dev": "npx tsx src/index.ts"
   },
   "devDependencies": {
+    "@types/luxon": "^3.7.1",
     "@types/node": "^24.3.1",
     "openapi-typescript": "^7.9.1",
     "tsx": "^4.20.5"
   },
   "dependencies": {
+    "luxon": "^3.7.2",
     "openapi-fetch": "^0.14.0"
   }
 }
