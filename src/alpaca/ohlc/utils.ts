@@ -14,7 +14,7 @@ export async function getBars(
   timeframe: components["parameters"]["Timeframe"],
   startET: string,
   endET: string
-) {
+): Promise<components['schemas']['StockBar'][]> {
   
   const client = createClient<paths>({ baseUrl });
 
