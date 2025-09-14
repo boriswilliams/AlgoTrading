@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import type { paths, components } from '../../../types/alpaca/data';
 import { headers } from '../headers';
 import { baseUrl } from '../urls/data';
-import { EXCHANGE } from '@src/values';
+import { EXCHANGE } from '../values';
 
 export function date(localET: string) {
   return DateTime.fromISO(localET, { zone: 'America/New_York' }).toUTC().toISO({ suppressMilliseconds: true }) ?? undefined;
