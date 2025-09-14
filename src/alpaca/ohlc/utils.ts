@@ -1,7 +1,7 @@
 import createClient from 'openapi-fetch';
 import { DateTime } from 'luxon';
 
-import type { paths, operations, components } from '../../../types/alpaca/data';
+import type { paths, components } from '../../../types/alpaca/data';
 import { headers } from '../headers';
 import { baseUrl } from '../urls/data';
 import { EXCHANGE } from '@src/values';
@@ -50,17 +50,19 @@ export async function getStockBars(
   endET: string
 ): Promise<components['schemas']['StockBar'][]> {
 
-  const query: operations['StockBars']['parameters']['query'] = {
-    symbols: ticker.toLowerCase(),
-    timeframe,
-    start: date(startET),
-    end: date(endET),
-    adjustment: 'raw',
-    feed: EXCHANGE,
-    sort: 'asc'
-  };
-
-  return await getPages('/v2/stocks/bars', ticker, {query});
+  return await getPages('/v2/stocks/bars', ticker,
+    {
+      query: {
+        symbols: ticker.toLowerCase(),
+        timeframe,
+        start: date(startET),
+        end: date(endET),
+        adjustment: 'raw',
+        feed: EXCHANGE,
+        sort: 'asc'
+      }
+    }
+  );
 }
 
 export async function getCryptoBars(
@@ -70,17 +72,18 @@ export async function getCryptoBars(
   endET: string
 ): Promise<components['schemas']['CryptoBar'][]> {
 
-  const path: operations['CryptoBars']['parameters']['path'] = {
-    loc: 'us'
-  };
-
-  const query: operations['CryptoBars']['parameters']['query'] = {
-    symbols: ticker.toLowerCase(),
-    timeframe,
-    start: date(startET),
-    end: date(endET),
-    sort: 'asc'
-  };
-
-  return await getPages('/v1beta3/crypto/{loc}/bars', ticker, {path, query});
+  return await getPages('/v1beta3/crypto/{loc}/bars', ticker,
+    {
+      path: {
+        loc: 'us'
+      },
+      query: {
+        symbols: ticker.toLowerCase(),
+        timeframe,
+        start: date(startET),
+        end: date(endET),
+        sort: 'asc'
+      }
+    }
+  );
 }
